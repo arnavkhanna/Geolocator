@@ -12,18 +12,23 @@ public class GeolocatorService {
     private HashMap<String, ArrayList<City>> cityMap;
 
     public GeolocatorService() {
-        cityMap =  CSVReader.readFile();
+        CSVReader csvReader = new CSVReader();
+        cityMap = csvReader.readFile();
     }
 
     /**
-     *returns all locations with the given area code
+     * returns all locations with the given area code
+     *
      * @param areaCode
      * @return
      */
-    public ArrayList<Location> getAllLocations(String areaCode){
+    public List<Location> getAllLocations(String areaCode) {
+
         ArrayList<City> cityList = cityMap.get(areaCode);
-        ArrayList<Location> locationList = new ArrayList<Location>();
-        for(City city:cityList){
+
+        ArrayList<Location> locationList = new ArrayList<>();
+
+        for (City city : cityList) {
             locationList.add(city.getLocation());
         }
         return locationList;
@@ -31,10 +36,11 @@ public class GeolocatorService {
 
     /**
      * returns the first location with the area code
+     *
      * @param areaCode
      * @return
      */
-    public Location getLocation(String areaCode){
+    public Location getLocation(String areaCode) {
         return cityMap.get(areaCode).get(0).getLocation();
     }
 
