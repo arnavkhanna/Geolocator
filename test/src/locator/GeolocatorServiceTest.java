@@ -12,7 +12,7 @@ public class GeolocatorServiceTest {
 
 
     @Test
-    public void testGeolocatorServiceEmpty(){
+    public void testGeolocatorServiceManyEmpty(){
 
         GeolocatorService geolocatorService = new GeolocatorService();
 
@@ -22,7 +22,7 @@ public class GeolocatorServiceTest {
     }
 
     @Test
-    public void testGeolocatorServiceEmptyOne(){
+    public void testGeolocatorServiceOneLocation(){
 
         GeolocatorService geolocatorService = new GeolocatorService();
 
@@ -32,7 +32,7 @@ public class GeolocatorServiceTest {
     }
 
     @Test
-    public void testGeolocatorServiceEmptyMany(){
+    public void testGeolocatorServiceManyLocations(){
 
         GeolocatorService geolocatorService = new GeolocatorService();
 
@@ -51,4 +51,14 @@ public class GeolocatorServiceTest {
 
         assertEquals("Locations should match for area code 808", locations, geolocatorService.getAllLocations("808"));
     }
+    @Test
+    public void testGeolocatorServiceOneEmpty(){
+
+        GeolocatorService geolocatorService = new GeolocatorService();
+
+        Location location = null;
+
+        assertEquals("Unknown area code should return null location", location, geolocatorService.getLocation("unknown"));
+    }
+
 }

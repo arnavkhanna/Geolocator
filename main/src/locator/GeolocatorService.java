@@ -28,8 +28,10 @@ public class GeolocatorService {
 
         ArrayList<Location> locationList = new ArrayList<>();
 
-        for (City city : cityList) {
-            locationList.add(city.getLocation());
+        if (cityList != null) {
+            for (City city : cityList) {
+                locationList.add(city.getLocation());
+            }
         }
         return locationList;
     }
@@ -41,7 +43,11 @@ public class GeolocatorService {
      * @return
      */
     public Location getLocation(String areaCode) {
-        return cityMap.get(areaCode).get(0).getLocation();
+        if (cityMap.get(areaCode) != null) {
+            return cityMap.get(areaCode).get(0).getLocation();
+        } else {
+            return null;
+        }
     }
 
 }
