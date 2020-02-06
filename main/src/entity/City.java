@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class City { //city class
     private Location location;
     private String areaCode;
@@ -24,6 +26,20 @@ public class City { //city class
 
     public void setAreaCode(String areaCode) {
         this.areaCode = areaCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(location, city.location) &&
+                Objects.equals(areaCode, city.areaCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(location, areaCode);
     }
 
     @Override

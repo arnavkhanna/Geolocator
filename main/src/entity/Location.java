@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class Location {
     private String name;
     private double longitude;
@@ -55,6 +57,21 @@ public class Location {
         double nauticalMiles = 60 * Math.toDegrees(angle);
         double statuteMiles = STATUTE_MILES_PER_NAUTICAL_MILE * nauticalMiles;
         return statuteMiles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return Double.compare(location.longitude, longitude) == 0 &&
+                Double.compare(location.latitude, latitude) == 0 &&
+                Objects.equals(name, location.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, longitude, latitude);
     }
 
     // return string representation of this point
